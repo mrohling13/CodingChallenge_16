@@ -34,3 +34,16 @@ function fetchProductsThen() {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
+
+// Task 3: Fetch Products with async/await
+
+async function fetchProductsAsync() {
+    try {
+        const response = await fetch(productUrl);
+        const products = await response.json();
+        displayProducts(products);
+    } catch(error) {
+        handleError(error);
+    }
+}
+
