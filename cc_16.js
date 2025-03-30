@@ -88,3 +88,16 @@ function displayProducts(products) {
         productContainer.appendChild(productCard);
     });
 }
+
+// Task 5: Reusable Error Handler
+
+function handleError(error) {
+    console.error("An error occurred: ", error);
+    const container = document.getElementById('product-container');
+    container.innerHTML = `
+        <div class="error-message">
+            Failed to load products. Please try again later.
+            <small>${error.message}</small>
+        </div>
+    `;
+}
