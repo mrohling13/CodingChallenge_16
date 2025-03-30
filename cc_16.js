@@ -23,15 +23,15 @@ function fetchProductsThen() {
         return response.json();
     })
     .then(products => {
-        console.log('Products with custom prices:');
-        products.slice(0, 5).forEach(product => {
+        console.log('Products with custom prices:'); // logs product prices
+        products.slice(0, 5).forEach(product => { // processes first 5 products
             const productName = product.fields.name.toLowerCase();
             const displayPrice = CUSTOM_PRICES[productName] || (product.fields.price / 100).toFixed(2);
-            console.log(`${product.fields.name}: $${displayPrice}`);
+            console.log(`${product.fields.name}: $${displayPrice}`); // displays product price
         });
     })
     .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+        console.error('There was a problem with the fetch operation:', error); // handles errors 
     });
 }
 
@@ -39,9 +39,9 @@ function fetchProductsThen() {
 
 async function fetchProductsAsync() {
     try {
-        const response = await fetch(productUrl);
+        const response = await fetch(productUrl); 
         const products = await response.json();
-        displayProducts(products);
+        displayProducts(products); // displays products 
     } catch(error) {
         handleError(error);
     }
@@ -51,16 +51,16 @@ async function fetchProductsAsync() {
 
 function displayProducts(products) {
     const productContainer = document.getElementById('product-container');
-    productContainer.innerHTML = '';
+    productContainer.innerHTML = ''; // clears existing content
     
     // Display only the first 5 products with your custom prices
     products.slice(0, 5).forEach(product => {
-        const productName = product.fields.name.toLowerCase();
-        const apiPrice = (product.fields.price / 100).toFixed(2);
-        const displayPrice = CUSTOM_PRICES[productName] || apiPrice;
+        const productName = product.fields.name.toLowerCase(); // product name
+        const apiPrice = (product.fields.price / 100).toFixed(2); // converts cents to dollars
+        const displayPrice = CUSTOM_PRICES[productName] || apiPrice; // uses custom pricing
         const isCustomPrice = CUSTOM_PRICES.hasOwnProperty(productName);
 
-        const productCard = document.createElement('div');
+        const productCard = document.createElement('div'); // creates product card
         productCard.className = 'product-card';
         
         // Product Image
@@ -96,7 +96,7 @@ function handleError(error) {
     const container = document.getElementById('product-container');
     container.innerHTML = `
         <div class="error-message">
-            Failed to load products. Please try again later.
+            Failed to load products. Please try again later. 
             <small>${error.message}</small>
         </div>
     `;
