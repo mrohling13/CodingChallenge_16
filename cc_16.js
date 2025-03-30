@@ -101,3 +101,8 @@ function handleError(error) {
         </div>
     `;
 }
+
+// Task 6: Call Your Fetch Functions
+
+fetchProductsThen();
+fetchProductsAsync();
